@@ -1,6 +1,6 @@
 package com.lvfq.concurrent.future;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * Main
@@ -15,12 +15,22 @@ public class Main {
      * client端 发送某个耗时请求 - >  FutrueData 代理对象 先返回一个 假对象，然后其内部开启线程进行真实请求操作 -- >  RealData 真实处理对象，处理结束之后，回调数据给 代理对象，代理对象再进行通知 client端
      */
 
-    public static void main(String[] args) throws InterruptedException {
-        Client client = new Client();
-        Data data = client.setRequest("this is test");
-        System.out.println("main ： " + System.currentTimeMillis());
-//        TimeUnit.SECONDS.sleep(8);
-        System.out.println(data.getResult());
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+//        Client client = new Client();
+//        Data data = client.setRequest("this is test");
+//        System.out.println("main ： " + System.currentTimeMillis());
+//        System.out.println(data.getResult());
+
+        /**
+         * Java jdk 内置 FutureTask 是一个线程类，必须使用配合线程池调用。
+         */
+        FutureTask futureTask = new FutureTask(new RealData_1("this is test jdk future"));
+        ExecutorService exe = Executors.newFixedThreadPool(1);
+
+        exe.submit(futureTask);
+
+        System.out.println(futureTask.get());
+
     }
 
 }
