@@ -19,6 +19,7 @@ public class UseCountDownLatch {
 
         /**
          * 相类似的 有  CyclicBarrier
+         * CountDownLatch 是其他线程控制某一个线程， CyclicBarrier 是控制多个线程同步。
          */
         CountDownLatch countDownLatch = new CountDownLatch(1); // 参数表示 线程执行 await()方法后，需要调用几次 countDown()方法才能唤醒线程继续。
 
