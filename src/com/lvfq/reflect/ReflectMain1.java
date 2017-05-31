@@ -17,7 +17,7 @@ public class ReflectMain1 {
     public static void main(String[] args) {
         Class<?> c = null;
         try {
-            c = Class.forName("com.lvfq.reflect.Parent");
+            c = Class.forName(Parent.class.getName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

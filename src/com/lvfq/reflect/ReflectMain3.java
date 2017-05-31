@@ -15,7 +15,7 @@ public class ReflectMain3 {
     public static void main(String[] args) {
         Class c = null;
         try {
-            c = Class.forName("com.lvfq.reflect.Person");
+            c = Class.forName(Person.class.getName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
