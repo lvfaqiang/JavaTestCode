@@ -37,7 +37,7 @@ public class SocketHandler implements Runnable {
                 if (body == null) {
                     break;
                 }
-                System.out.println("Server : " + body);
+                System.out.println("server : " + body);
                 // 向客户端发送消息内容。
                 writer.println("服务端向客户端返回的数据。。");
             }

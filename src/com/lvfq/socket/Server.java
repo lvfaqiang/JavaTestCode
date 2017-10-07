@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Server
+ * server
  *
  * @author lvfq
  * @date 2017/5/7 上午11:45
