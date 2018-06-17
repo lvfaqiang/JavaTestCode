@@ -14,8 +14,8 @@ import java.io.PrintWriter;
  */
 public class AndroidResColor {
 
-    private String path = "/Users/apple/Desktop/";
-    private String values = "<color name=\"{0}\">#{1}</color>";
+    private String path = "/Users/apple/Desktop/colors/";
+    private String values = "    <color name=\"{0}\">#{1}</color>";
 
     int length = 16;
     String[] str = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
@@ -29,8 +29,8 @@ public class AndroidResColor {
     private void generate() {
         long startTime = System.currentTimeMillis();
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("< ? xml; version=\"1.0\" encoding=\"utf-8\"?>\n");
-        stringBuffer.append("<resources>\n");
+//        stringBuffer.append("< ? xml; version=\"1.0\" encoding=\"utf-8\"?>\n");
+//        stringBuffer.append("<resources>\n");
 
         String a = "";
         String b = "";
@@ -38,7 +38,8 @@ public class AndroidResColor {
         String d = "";
         String e = "";
         String f = "";
-
+        int count = 0;
+        int index = 0;
         for (int i = 0; i < length; i++) {
             a = str[i];
             for (int j = 0; j < length; j++) {
@@ -52,23 +53,30 @@ public class AndroidResColor {
                             for (int o = 0; o < length; o++) {
                                 f = str[o];
                                 stringBuffer.append(values.replace("{0}", getColor(a, b, c, d, e, f)).replace("{1}", a + b + c + d + e + f) + "\n");
+
+                                count++;
+                                if ((count < 16777216 && count % 798910 == 0) || count == 16777216) {
+                                    index++;
+                                    generateFile(stringBuffer, index);
+                                    stringBuffer.setLength(0);
+                                }
                             }
                         }
                     }
                 }
             }
         }
-
-        stringBuffer.append("</resources>\n");
-
-        File colorsFile = new File(path, "colors.xml");
-        try {
-            PrintWriter pw = new PrintWriter(new FileOutputStream(colorsFile));
-            pw.print(stringBuffer.toString());
-            pw.close();
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
-        }
+        System.out.println("count : " + count);
+//        stringBuffer.append("</resources>\n");
+//
+//        File colorsFile = new File(path, "colors.xml");
+//        try {
+//            PrintWriter pw = new PrintWriter(new FileOutputStream(colorsFile));
+//            pw.print(stringBuffer.toString());
+//            pw.close();
+//        } catch (FileNotFoundException exception) {
+//            exception.printStackTrace();
+//        }
 
         long endTime = System.currentTimeMillis();
         System.out.println(endTime - startTime);
@@ -84,6 +92,23 @@ public class AndroidResColor {
     private int getAscll(String value) {
         String s = Integer.toHexString(value.toCharArray()[0]);
         return Integer.parseInt(s);
+    }
+
+    private void generateFile(StringBuffer buffer, int index) {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+        stringBuffer.append("<resources>\n");
+        stringBuffer.append(buffer);
+        stringBuffer.append("</resources>\n");
+
+        File colorsFile = new File(path, "colors_" + index + ".xml");
+        try {
+            PrintWriter pw = new PrintWriter(new FileOutputStream(colorsFile));
+            pw.print(stringBuffer.toString());
+            pw.close();
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
     }
 
     /**

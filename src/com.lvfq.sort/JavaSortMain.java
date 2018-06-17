@@ -50,24 +50,6 @@ public class JavaSortMain {
 //        }
     }
 
-    /**
-     * 冒泡排序
-     *
-     * @param nums
-     */
-    private static void bubbleSort(int[] nums) {
-        int temp;
-        int size = nums.length;
-        for (int i = 0; i < size - 1; i++) {
-            for (int j = i + 1; j < size; j++) {
-                if (nums[i] < nums[j]) {
-                    temp = nums[i];
-                    nums[i] = nums[j];
-                    nums[j] = temp;
-                }
-            }
-        }
-    }
 
     private static void intorate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
