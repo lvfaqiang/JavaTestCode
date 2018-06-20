@@ -12,6 +12,9 @@ public class Parent implements ICallBack {
     public static final int CODE = 0;
     public static final String TYPE = "type";
 
+    public Parent() {
+    }
+
     @Override
     public void setType(String type) {
         System.out.println("Parent getType : " + type);

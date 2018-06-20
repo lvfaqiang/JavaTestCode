@@ -11,6 +11,9 @@ public class Children extends Parent {
 
     private String hobby;
 
+    public Children() {
+    }
+
     public Children(String name, int age) {
         super(name, age);
     }

@@ -1,6 +1,7 @@
 package com.lvfq.reflect;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -13,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 public class ReflectMain2 {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException, InstantiationException, InvocationTargetException {
         Class<?> c = null;
         Parent parent = null;
 
@@ -56,6 +57,9 @@ public class ReflectMain2 {
         for (int i = 0; i < c.getDeclaredFields().length; i++) {
             System.out.println("DeclaredFields : " + c.getDeclaredFields()[i]);
         }
+        Field hobby = c.getDeclaredField("hobby");
+        hobby.setAccessible(true);
+
 
         /**
          * 获取当前类中的所有方法（仅限此类中的方法）。
