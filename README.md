@@ -3,6 +3,8 @@ Java学习的测试代码
 
 [反射](https://github.com/lvfaqiang/JavaTestCode/tree/master/src/com/lvfq/reflect)
 
+[synchronized 关键字](https://github.com/lvfaqiang/JavaTestCode/tree/master/src/com/lvfq/sync/SyncMain.java)
+
 #### Java 数据结构和算法
     效率对比 ： (插入 > 选择 > 冒泡)
 
